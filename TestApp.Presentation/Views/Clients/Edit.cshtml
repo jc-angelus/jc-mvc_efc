@@ -1,0 +1,86 @@
+﻿@model TestApp.Domain.Models.ClientsModel
+
+@{
+    ViewData["Title"] = "Seveclie Editar";
+    Layout = "_LayoutNew";
+}
+
+<div class="row">
+    
+    <div class="col-md-12">
+ 
+        <div class="card card-primary">
+            <div class="card-header card-form">
+                <h3 class="card-title">Seveclie Formulario<small></small></h3>
+            </div>            
+            <form asp-action="Edit" asp-id="quickForm" id="quickForm" enctype="multipart/form-data">
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.DocumentId)
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="DocumentId" class="control-label"></label>
+                        <input asp-for="DocumentId" class="form-control" title="Campo cédula del Seveclie" required />
+                        <span asp-validation-for="DocumentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" title="Campo nombre del Seveclie" required />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" title="Campo nombre del Seveclie" required />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="GendersId" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.GendersId, Model.SelectListGenders.List, new { @class = "form-control", @title = "Campo generos del Seveclie" })
+                        <span asp-validation-for="GendersId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="BirthDate" class="control-label"></label>
+                        @Html.TextBoxFor(model => model.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @title = "Campo fecha del Seveclie" })
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="text-danger">*</span>
+                        <label asp-for="MaritalStatusId" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.MaritalStatusId, Model.SelectListMaritalStatus.List, new { @class = "form-control", @title = "Campo estado civil del Seveclie" })
+                        <span asp-validation-for="MaritalStatusId" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+                
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary command-button">Save</button>
+                    <a asp-action="Index" type="button" class="btn btn-primary command-button">Return</a>
+                </div>
+            </form>
+        </div>        
+    </div>
+    
+    <div class="col-md-12">        
+        
+    </div>    
+</div>
+
+<script src="~/WebCore/plugins/jquery/jquery.min.js"></script>
+<script src="~/WebCore/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/WebCore/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/WebCore/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="~/WebCore/dist/js/adminlte.min.js"></script>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+
